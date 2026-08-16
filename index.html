@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>llc the dead</title>
+    <link rel="icon" type="image/png" href="https://i.imgur.com/YKPIQXT.png">
     <meta property="og:title" content="llc the dead">
     <meta property="og:description" content="a fan project">
-    <meta property="og:image" content="https://i.imgur.com/5HRpgzy.png">
+    <meta property="og:image" content="https://i.imgur.com/YKPIQXT.png">
     <meta property="og:type" content="website">
-    <meta name="theme-color" content="#890710">
+    <meta name="theme-color" content="#920f19">
     <meta name="twitter:card" content="summary_large_image">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
@@ -27,43 +28,47 @@
         * { border-radius: 0 !important; transition: none !important; box-sizing: border-box; }
         .wrapper { 
             width: 100%; 
-            max-width: 800px; 
-            padding: 20px; 
+            max-width: 960px; 
+            padding: 30px 20px; 
             margin: auto; 
             display: flex;
             flex-direction: column;
             justify-content: center;
         }
-        .grid-container { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+        .grid-container { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: start; }
         .left-col, .right-col { display: flex; flex-direction: column; width: 100%; }
-        .title, .status { font-size: clamp(28px, 4vw, 40px); font-weight: 700; letter-spacing: -0.04em; line-height: 1; margin: 0 0 20px 0; text-align: left; color: #dcc9bb; text-transform: lowercase; }
+        .title, .status { font-size: clamp(32px, 4.5vw, 48px); font-weight: 700; letter-spacing: -0.04em; line-height: 1; margin: 0 0 24px 0; text-align: left; color: #dcc9bb; text-transform: lowercase; }
         .image-container { width: 100%; position: relative; }
         .cover-image { display: block; width: 100%; aspect-ratio: 1 / 1; object-fit: cover; background-color: #2a0205; }
-        .nav { display: flex; gap: 20px; margin-top: 15px; flex-wrap: wrap; }
-        .nav-link, .toggle-btn { color: #dcc9bb; text-decoration: underline; font-weight: 700; font-size: 13px; cursor: pointer; background: none; border: none; padding: 0; text-transform: lowercase; }
-        .tracklist { font-weight: 500; font-size: 13px; display: flex; flex-direction: column; justify-content: space-between; line-height: 1; }
+        .nav { display: flex; gap: 20px; margin-top: 18px; flex-wrap: wrap; }
+        .toggle-btn { color: #dcc9bb; text-decoration: underline; font-weight: 700; font-size: 14px; cursor: pointer; background: none; border: none; padding: 0; text-transform: lowercase; }
+        .tracklist { font-weight: 500; font-size: 14px; display: flex; flex-direction: column; justify-content: space-between; line-height: 1; }
         .track-row { display: flex; white-space: nowrap; cursor: pointer; align-items: center; }
         .track-name { opacity: 0.5; font-weight: 400; color: #dcc9bb; }
         .track-row.released .track-name { opacity: 1; }
         .track-row.active .track-name { font-weight: 700; text-decoration: none; opacity: 1; }
-        .num { width: 25px; flex-shrink: 0; pointer-events: none; opacity: 1; color: #dcc9bb; font-weight: 400; }
-        .player-section { margin-top: 20px; opacity: 0; pointer-events: none; background: transparent; }
+        .num { width: 28px; flex-shrink: 0; pointer-events: none; opacity: 1; color: #dcc9bb; font-weight: 400; }
+        .player-section { margin-top: 24px; opacity: 0; pointer-events: none; background: transparent; }
         .player-section.visible { opacity: 1; pointer-events: auto; }
         .slider-container { position: relative; width: 100%; height: 20px; display: flex; align-items: center; }
         input[type="range"] { -webkit-appearance: none; appearance: none; width: 100%; height: 2px; background: rgba(220, 201, 187, 0.2); outline: none; margin: 0; cursor: pointer; }
         input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 10px; height: 10px; background: #dcc9bb; border-radius: 50% !important; cursor: pointer; position: relative; z-index: 2; }
         input[type="range"]::-moz-range-thumb { width: 10px; height: 10px; background: #dcc9bb; border-radius: 50% !important; cursor: pointer; border: none; position: relative; z-index: 2; }
         .slider-fill { position: absolute; height: 2px; background: #dcc9bb; left: 0; pointer-events: none; z-index: 1; }
-        .controls-row { display: flex; align-items: center; justify-content: space-between; margin-top: 10px; }
-        .play-btn, .icon-btn { cursor: pointer; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; color: #dcc9bb; }
+        .controls-row { display: flex; align-items: center; justify-content: space-between; margin-top: 12px; }
+        .play-btn, .icon-btn { cursor: pointer; width: 22px; height: 22px; display: flex; align-items: center; justify-content: center; color: #dcc9bb; }
         .volume-group { display: flex; align-items: center; gap: 8px; width: 110px; }
-        .mute-btn { cursor: pointer; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; color: #dcc9bb; }
+        .mute-btn { cursor: pointer; width: 22px; height: 22px; display: flex; align-items: center; justify-content: center; color: #dcc9bb; }
         @media (max-width: 640px) {
             body { overflow-y: auto; height: auto; display: block; }
             .grid-container { grid-template-columns: 1fr; gap: 30px; }
-            .tracklist { height: auto !important; gap: 12px; }
+            .tracklist { height: auto !important; gap: 12px; font-size: 13px; }
             .wrapper { max-width: 100%; padding: 20px; margin: 20px auto; }
-            .player-section.visible { position: sticky; bottom: 0px; padding: 15px 0 25px 0; border-top: 1px solid rgba(220,201,187,0.2); z-index: 50; background: #890710; }
+            .title, .status { font-size: clamp(28px, 4vw, 40px); margin-bottom: 20px; }
+            .toggle-btn { font-size: 13px; }
+            .num { width: 25px; }
+            .player-section.visible { position: sticky; bottom: 0px; padding: 15px 0 25px 0; border-top: 1px solid rgba(220,201,187,0.2); z-index: 50; background: #920f19; }
+            .volume-group { display: none !important; }
         }
     </style>
 </head>
@@ -76,8 +81,6 @@
                     <img src="llcthedead.png" id="cover-img" class="cover-image" alt="Cover Art">
                 </div>
                 <div class="nav">
-                    <a href="mailto:contact.nicwtf@gmail.com" class="nav-link">contact</a>
-                    <a href="https://discord.gg/7rsBCMdhxF" class="nav-link">stay posted</a>
                     <button id="quality-toggle" class="toggle-btn">audio type: mp3</button>
                 </div>
             </div>
@@ -107,17 +110,17 @@
                     <div class="controls-row">
                         <div style="display: flex; align-items: center; gap: 15px;">
                             <div class="play-btn" id="play-pause">
-                                <svg id="play-icon" viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-                                <svg id="pause-icon" viewBox="0 0 24 24" width="20" height="20" fill="currentColor" style="display:none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                                <svg id="play-icon" viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                                <svg id="pause-icon" viewBox="0 0 24 24" width="22" height="22" fill="currentColor" style="display:none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
                             </div>
                             <a id="download-btn" href="#" download class="icon-btn">
-                                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
                             </a>
                         </div>
                         <div class="volume-group" id="volume-ctrl">
                             <div class="mute-btn" id="mute-toggle">
-                                <svg id="vol-high" viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
-                                <svg id="vol-mute" viewBox="0 0 24 24" width="20" height="20" fill="currentColor" style="display:none;"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
+                                <svg id="vol-high" viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+                                <svg id="vol-mute" viewBox="0 0 24 24" width="22" height="22" fill="currentColor" style="display:none;"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
                             </div>
                             <div class="slider-container" style="width: 80px;">
                                 <div class="slider-fill" id="volume-fill" style="width: 50%"></div>
@@ -146,21 +149,15 @@
         const volHighIcon = document.getElementById('vol-high');
         const volMuteIcon = document.getElementById('vol-mute');
         const downloadBtn = document.getElementById('download-btn');
-        const volumeCtrl = document.getElementById('volume-ctrl');
         const tracks = Array.from(document.querySelectorAll('.track-row.released'));
         const MAIN_COVER = "llcthedead.png";
-        const FALLBACK_COVER = "https://i.imgur.com/5HRpgzy.png";
+        const FALLBACK_COVER = "https://i.imgur.com/YKPIQXT.png";
         let useWav = false;
         let lastVolume = 0.5;
         audio.volume = 0.5;
 
-        const isIOS = [
-            'iPad Simulator', 'iPhone Simulator', 'iPod Simulator',
-            'iPad', 'iPhone', 'iPod'
-        ].includes(navigator.platform) || (navigator.userAgent.includes("Mac") && "ontouchend" in document);
-
-        if (isIOS) {
-            volumeCtrl.style.display = 'none';
+        function isMobileDevice() {
+            return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 640;
         }
 
         coverImg.onerror = () => {
@@ -175,7 +172,7 @@
         }
 
         function updateVolUI() {
-            if (isIOS) return;
+            if (isMobileDevice()) return;
             const isMuted = audio.volume === 0;
             volHighIcon.style.display = isMuted ? 'none' : 'block';
             volMuteIcon.style.display = isMuted ? 'block' : 'none';
@@ -221,7 +218,7 @@
         }
 
         muteBtn.addEventListener('click', () => {
-            if (isIOS) return;
+            if (isMobileDevice()) return;
             if (audio.volume > 0) {
                 lastVolume = audio.volume;
                 audio.volume = 0;
@@ -287,7 +284,7 @@
         });
 
         volume.addEventListener('input', () => {
-            if (isIOS) return;
+            if (isMobileDevice()) return;
             audio.volume = volume.value;
             updateVolUI();
         });
@@ -315,8 +312,8 @@
                 case ' ': e.preventDefault(); playBtn.click(); break;
                 case 'ArrowLeft': e.preventDefault(); audio.currentTime = Math.max(0, audio.currentTime - 5); break;
                 case 'ArrowRight': e.preventDefault(); audio.currentTime = Math.min(audio.duration, audio.currentTime + 5); break;
-                case 'ArrowUp': e.preventDefault(); if(!isIOS) { audio.volume = Math.min(1, audio.volume + 0.05); updateVolUI(); } break;
-                case 'ArrowDown': e.preventDefault(); if(!isIOS) { audio.volume = Math.max(0, audio.volume - 0.05); updateVolUI(); } break;
+                case 'ArrowUp': e.preventDefault(); if(!isMobileDevice()) { audio.volume = Math.min(1, audio.volume + 0.05); updateVolUI(); } break;
+                case 'ArrowDown': e.preventDefault(); if(!isMobileDevice()) { audio.volume = Math.max(0, audio.volume - 0.05); updateVolUI(); } break;
             }
         });
 
